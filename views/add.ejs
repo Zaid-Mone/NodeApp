@@ -1,0 +1,30 @@
+
+<%-include('./layout/header') %> 
+<%-include('./layout/navbar') %> 
+
+    <div class="registration-form">
+        <form action="/add" method="Post" enctype="multipart/form-data">
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="name" name="name" placeholder="Username">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" id="email" name="email" placeholder="Email">
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control item" id="phone" name="phone" placeholder="Phone Number">
+            </div>
+            <div class="form-group">
+                <input type="file" class="form-control item" id="image" name="image" multiple>
+            </div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-block create-account">Create</button>
+              <a href="/users" class="btn btn-block create-account2">Back</a>
+            </div>
+        </form>
+    </div>
+
+    <%-include('./layout/footer') %> 
+    

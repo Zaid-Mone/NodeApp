@@ -1,0 +1,85 @@
+<%-include('./layout/header') %> 
+<%-include('./layout/navbar') %> 
+
+<div class="container mt-5">
+    <a href="/users/add"class="btn btn-success mb-2">Create</a>
+   <div class="row">
+      <div class="col-sm-12">
+        <%if(users !=''){ %>
+            <table class="table table-bordered table-striped mt-3" id="myTable">
+                <thead>
+                    <tr class="bg-secondary text-light">
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Email
+                        </th>
+                        <th>
+                            Phone
+                        </th>
+                        <th>
+                         Iamge
+                        </th>
+                        <th >Action</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <% for(let user of users){ %> 
+                            <tr>
+                              
+                                <td><%=user.name %> </td>
+                                <td><%=user.email %> </td>
+                                <td><%=user.phone %> </td>
+                                <td><img src="<%=user.image%>" alt="" width="50" height="50"></td>
+                                <td  style="background-color:inherit ;display: flex;flex-direction: row;justify-content: space-between;align-items: center;border:none;height: 80px;">
+                                    <a href="users/details/<%=user._id%>" class="text-secondary"><i class="fa-sharp fa-solid fa-eye"></i></a>
+                                   <a href="users/edit/<%=user._id%>" class="text-success"><i class="fa-solid fa-pen-to-square"></i></a>
+                                   <button type="button" class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" style="border: none;background-color:inherit;">
+                                    <i class="fa-solid fa-trash "></i>
+                                  </button>
+                                  <!-- Modal -->
+<div class="modal fade " id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header mt-1">
+          <h1 class="modal-title fs-5 text-danger" id="exampleModalLabel">Delete (<%=user.name %>) </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body alert alert-danger ">
+          Are you Sure to Delete ??
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary mt-2" data-bs-dismiss="modal">Close</button>
+          <form action="/users/delete/<%=user._id%>?_method=DELETE" method="POST" class="mb-4">
+            <button type="submit"class="btn btn-danger mt-4">Delete</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+                                  
+                        
+                                </td>
+                                <td></td>
+                            </tr>
+                        <%}%>
+
+                   
+                </tbody>
+            </table>
+            <% }else { %>  
+                <div class="alert alert-danger">
+                    <p>
+                        Sorry The User Not Exist
+                    </p>
+                </div>
+                <% } %> 
+      </div>
+   </div>
+
+   
+</div>
+
+<%-include('./layout/footer') %> 
